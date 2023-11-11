@@ -1,2 +1,2 @@
 # cicloOtto
-Repositorio desordenado de mi proyecto de termodinámica.
+Repositorio de mi proyecto de termodinámica.
