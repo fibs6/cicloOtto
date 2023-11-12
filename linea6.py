@@ -39,10 +39,10 @@ def actualizar_grafico(attrname, old, new):
     plot.line(vb,(pb/1000),legend_label="Proceso 2-3 (isocorico)",line_width=2,color="red")
 
     #Proceso 3-4
-    c2=p3*(v3**gamma) #=139337.5097
+    c2=p3*(v3**gamma)
     v4 =v1
     vc = np.linspace(v3,v4,100)
-    pc = c2/(vc**gamma) #5547.126174
+    pc = c2/(vc**gamma)
     plot.line(vc,(pc/1000),legend_label="Proceso 3-4 (adiabatico)",line_width=2,color="green")
 
     #Proceso 4-1
