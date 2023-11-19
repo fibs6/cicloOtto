@@ -12,7 +12,7 @@ plot = figure(title="Ciclo otto",x_axis_label='Volumen (m^3)',y_axis_label='Pres
 presion_max = Slider(title="Presion máxima (kPa)", value=35*10**5 , start=35*10**5, end=50*10**5, step=10*10**3)
 presion_min = Slider(title="Presion mínima (kPa)", value=2*10**5, start=2*10**5, end=10*10**5, step=10*10**3)
 volumen = Slider(title="Volumen $m^3$", value=1.0, start=0, end=10, step=0.1)
-radio_compresion = 5
+radio_compresion = Slider(title="Radio de compresión", value=1.0, start=0, end=10, step=0.1)
 gamma = 1.4
 
 
@@ -23,8 +23,9 @@ def actualizar_grafico(attrname, old, new):
     #Proceso 1-2
     p1 = presion_min.value
     v1 = volumen.value
+    radio = radio_compresion.value
 
-    v2 = v1 / radio_compresion
+    v2 = v1 / radio
     c1=p1*(v1**gamma)
     va = np.linspace(v2,v1,100)
     pa = c1/(va**gamma)
@@ -53,10 +54,10 @@ def actualizar_grafico(attrname, old, new):
     plot.line(vd,pd/1000,legend_label="Proceso 4-1 (isocorico)",line_width=2,color="brown")
 
 
-for w in [presion_max, presion_min, volumen]:
+for w in [presion_max, presion_min, volumen, radio_compresion]:
     w.on_change('value', actualizar_grafico)
 
-inputs = column(presion_max, presion_min, volumen)
+inputs = column(presion_max, presion_min, volumen, radio_compresion)
 
 curdoc().add_root(row(inputs, plot, width=800))
 curdoc().title = "Ciclo Otto"
