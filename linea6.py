@@ -12,7 +12,7 @@ plot = figure(title="Ciclo otto",x_axis_label='Volumen $$(m^3)$$',y_axis_label='
 presion_max = Slider(title="Presion máxima (Pa)", value=35*10**6 , start=3*10**6, end=35*10**6, step=10*10**3)
 presion_min = Slider(title="Presion mínima (Pa)", value=2.5*10**6, start=2*10**6, end=3.5*10**6, step=10*10**3)
 volumen = Slider(title="Volumen $$m^3$$", value=1.0, start=0.1, end=10, step=0.1)
-radio_compresion = Slider(title="Radio de compresión", value=8.5, start=5, end=10, step=0.1)
+radio_compresion = Slider(title="Radio de compresión", value=8.5, start=2, end=10, step=0.1)
 gamma = 1.4
 
 
