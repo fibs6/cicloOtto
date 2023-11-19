@@ -9,10 +9,10 @@ from bokeh.models.annotations.labels import Label
 plot = figure(title="Ciclo otto",x_axis_label='Volumen $$(m^3)$$',y_axis_label='Presión (kPa)')
 
 
-presion_max = Slider(title="Presion máxima (Pa)", value=35*10**6 , start=35*10**6, end=50*10**6, step=10*10**3)
-presion_min = Slider(title="Presion mínima (Pa)", value=2*10**6, start=2*10**6, end=10*10**6, step=10*10**3)
+presion_max = Slider(title="Presion máxima (Pa)", value=3*10**6 , start=3*10**6, end=3.5*10**6, step=10*10**3)
+presion_min = Slider(title="Presion mínima (Pa)", value=2.5*10**6, start=2*10**6, end=3.5*10**6, step=10*10**3)
 volumen = Slider(title="Volumen $$m^3$$", value=1.0, start=0, end=10, step=0.1)
-radio_compresion = Slider(title="Radio de compresión", value=5.0, start=0, end=10, step=0.1)
+radio_compresion = Slider(title="Radio de compresión", value=8.5, start=8, end=10, step=0.1)
 gamma = 1.4
 
 
@@ -59,12 +59,8 @@ def actualizar_grafico(attrname, old, new):
     mostrar_eta = 1 - (1 / radio_compresion.value ** (gamma - 1))
 
 
-    eta = Label(
-        text="$$\eta =  {}$$".format(mostrar_eta),
-        x=150, y=130,
-        x_units="screen", y_units="screen",
-    )
-    plot.add_layout(eta)
+    plot.title.text = "Ciclo Otto - $$\eta =$$  " + str(mostrar_eta)
+
 
 
     
