@@ -3,16 +3,16 @@ from bokeh.io import curdoc
 from bokeh.plotting import figure
 from bokeh.models import  Slider
 from bokeh.layouts import column, row
+from bokeh.models.annotations.labels import Label
 
 
+plot = figure(title="Ciclo otto",x_axis_label='Volumen $$(m^3)$$',y_axis_label='Presión (kPa)')
 
-plot = figure(title="Ciclo otto",x_axis_label='Volumen (m^3)',y_axis_label='Presión (kPa)')
 
-
-presion_max = Slider(title="Presion máxima (kPa)", value=35*10**5 , start=35*10**5, end=50*10**5, step=10*10**3)
-presion_min = Slider(title="Presion mínima (kPa)", value=2*10**5, start=2*10**5, end=10*10**5, step=10*10**3)
-volumen = Slider(title="Volumen $m^3$", value=1.0, start=0, end=10, step=0.1)
-radio_compresion = Slider(title="Radio de compresión", value=1.0, start=0, end=10, step=0.1)
+presion_max = Slider(title="Presion máxima (Pa)", value=35*10**6 , start=35*10**6, end=50*10**6, step=10*10**3)
+presion_min = Slider(title="Presion mínima (Pa)", value=2*10**6, start=2*10**6, end=10*10**6, step=10*10**3)
+volumen = Slider(title="Volumen $$m^3$$", value=1.0, start=0, end=10, step=0.1)
+radio_compresion = Slider(title="Radio de compresión", value=5.0, start=0, end=10, step=0.1)
 gamma = 1.4
 
 
@@ -52,6 +52,32 @@ def actualizar_grafico(attrname, old, new):
     pd=np.linspace(p1,p4,100)
     vd=100*[v1]
     plot.line(vd,pd/1000,legend_label="Proceso 4-1 (isocorico)",line_width=2,color="brown")
+
+
+
+    # Calcular eta
+    mostrar_eta = 1 - (1 / radio_compresion.value ** (gamma - 1))
+
+
+    eta = Label(
+        text="$$\eta =  {}$$".format(mostrar_eta),
+        x=150, y=130,
+        x_units="screen", y_units="screen",
+    )
+    plot.add_layout(eta)
+
+
+    
+
+
+
+#Inicializar grafico con valores por defecto
+presion_max.value = 35*10**6
+presion_min.value = 2*10**6
+volumen.value = 1.0
+radio_compresion.value = 5.0
+actualizar_grafico(None, None, None)
+
 
 
 for w in [presion_max, presion_min, volumen, radio_compresion]:
