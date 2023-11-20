@@ -17,7 +17,7 @@ def actualizar_grafico(attrname, old, new):
     # Limpiar el grafico
     plot.renderers = []
 
-    #Proceso 1-2
+    #Proceso 3-4
     p1 = (presion_min.value)*10**2
     v1 = volumen.value
     relacion = relacion_compresion.value
@@ -26,7 +26,7 @@ def actualizar_grafico(attrname, old, new):
     c1=p1*v1**gamma
     va = np.linspace(v2,v1,100)
     pa = c1/(va**gamma)
-    plot.line(va,(pa/1000),legend_label="Combustión (adiabatico)",line_width=2,color="blue")
+    plot.line(va,(pa/1000),legend_label="Expansión (adiabatico)",line_width=2,color="blue")
 
     #Proceso 2-3
     p3 = (presion_max.value)*10**2
@@ -34,14 +34,14 @@ def actualizar_grafico(attrname, old, new):
     p2 = c1/(v2**gamma)
     pb=np.linspace(p2,p3,100)
     vb=100*[v3]
-    plot.line(vb,(pb/1000),legend_label="Compresión (isocorico)",line_width=2,color="red")
+    plot.line(vb,(pb/1000),legend_label="Combustión (isocorico)",line_width=2,color="red")
 
     #Proceso 1-2
     c2=p3*(v3**gamma)
     v4 =v1
     vc = np.linspace(v3,v4,100)
     pc = c2/(vc**gamma)
-    plot.line(vc,(pc/1000),legend_label="Admisión (adiabatico)",line_width=2,color="green")
+    plot.line(vc,(pc/1000),legend_label="Compresión (adiabatico)",line_width=2,color="green")
 
     #Proceso 4-1
     v4 = v1
